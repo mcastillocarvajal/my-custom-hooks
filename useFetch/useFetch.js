@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 export const useFetch = ( url ) => {
 
     const isMounted = useRef(true)
-    const [state, setState] = useState({ data: null, loading: true, err: null });
+    const [state, setState] = useState({ data: null, loading: true, error: null });
 
     useEffect(() => {
         return () => {
@@ -14,7 +14,7 @@ export const useFetch = ( url ) => {
 
     useEffect( () => {
 
-        setState({ data: null, loading: true, err: null });
+        setState({ data: null, loading: true, error: null });
 
         fetch( url )
             .then( resp => resp.json() )
@@ -23,7 +23,7 @@ export const useFetch = ( url ) => {
                 if (isMounted.current) {
                     setState({
                         loading: false,
-                        err: null,
+                        error: null,
                         data: data
                     })
                 }
@@ -33,7 +33,7 @@ export const useFetch = ( url ) => {
                 setState({
                     data: null,
                     loading: false,
-                    err: 'info cannot be loaded'
+                    error: 'info cannot be loaded'
                 })
             })
 
